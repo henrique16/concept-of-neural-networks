@@ -1,0 +1,25 @@
+{
+  "name": "concept-of-neural-networks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch --no-warnings index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henrique16/concept-of-neural-networks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/henrique16/concept-of-neural-networks/issues"
+  },
+  "homepage": "https://github.com/henrique16/concept-of-neural-networks#readme",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "4.22"
+  }
+}
