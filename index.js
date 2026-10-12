@@ -67,6 +67,14 @@ async function trainModel(inputXs, outputYs) {
   return model
 }
 
+async function predict(model, people) {
+  const tfInput = tf.tensor2d(people)
+
+  const pred = model.predict(tfInput)
+  const predArray = await pred.array()
+  return predArray[0].map((prob, index) => ({ prob, index }))
+}
+
 // Criação do tensor de pessoas
 people.forEach(person => {
   const thisTensor = []
@@ -100,6 +108,32 @@ const outputYs = tf.tensor2d(categoriesTensor);
 
 (async () => {
   const model = await trainModel(inputXs, outputYs)
+
+  const people = {
+    name: "zé",
+    age: 28,
+    color: "green",
+    location: "London"
+  }
+
+  const tensorPeople = [
+    [
+      0.2, // age
+      0, // color blue
+      1, // color red
+      0, // color green
+      0, // location London
+      0, // location New York
+      1, // location Los Angeles
+    ]
+  ]
+
+  const predictions = await predict(model, tensorPeople)
+  const results = predictions
+    .sort((a, b) => b.prob - a.prob)
+    .map(p => `${categoriesCategories[p.index]} - ${(p.prob * 100).toFixed(2)}%`)
+
+  console.log(results)
 })();
 
 //inputXs.print()
